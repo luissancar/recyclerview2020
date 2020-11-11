@@ -1,1 +1,1 @@
-"# Ejemplo recyclerview Kotlin 2020" 
+# Ejemplo recyclerview Kotlin 2020
