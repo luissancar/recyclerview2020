@@ -1,7 +1,9 @@
 package com.example.recycleview2020
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recycleview2020.model.Guitarras
@@ -9,11 +11,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 //https://www.youtube.com/watch?v=QIVbnR9pQfY
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),RecyclerAdapter.OnGuitarraClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupRecyclerView()
+
     }
 
 
@@ -33,7 +36,20 @@ class MainActivity : AppCompatActivity() {
 
 
         )
-        recyclerView.adapter=RecyclerAdapter(this,listGuitarras)
+        recyclerView.adapter=RecyclerAdapter(this,listGuitarras,this)
 
     }
+
+    override fun onImageClick(imagen: String) {
+        val intent=Intent(this,MainActivity2::class.java)
+        intent.putExtra("imageURL",imagen)
+        startActivity(intent)
+
+    }
+
+    override fun onItemClick(marca: String, modelo: String) {
+        Toast.makeText(this, marca+" "+modelo, Toast.LENGTH_SHORT).show()
+    }
+
+
 }
